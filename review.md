@@ -636,6 +636,7 @@ Be aware that there are also IntVar, DoubleVar, and BooleanVar
     ```python
     # button 2 causes the error
     ```
+    - c:
     ```python
     # there are no errors
     ````
