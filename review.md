@@ -57,7 +57,7 @@
     ```
 4. Select all the valid ways to insert a key-value pair in the dictionary REGARDLESS of the contents of the dictionary.
     ```python
-    mydict = {"key", "value"}
+    mydict = {"key": "value"}
     ```
     - a:
     ```python
@@ -403,11 +403,240 @@
     # button 1 is "greedy" and claims most of the space even though it does not fill it. Thus it stays the same size but adjusts location. Since button 2 is on a different axis it doesn't fight button1 for vertical space and  thus only expands horizontally. Button 3 remains the same size at all times.
     ```
 21. Moving on to grid!
-    
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    button1 = tk.Button(root, text="Button 1")
+    button1.grid(row=0, column=0)
+    button2 = tk.Button(root, text="Button 2")
+    button2.grid(row=1, column=1)
+    button3 = tk.Button(root, text="Button 3")
+    button3.grid(row=2, column=2)
+    tk.mainloop()
+    ```
+    What will this look like?
+
+    - a:
+    ```python
+    |button 1|
+                |button 2|
+                            |button 3|
+    ```
+    - b:
+    ```python
+    |button 1|
+    |button 2|
+    |button 3|
+    ```
+    - c
+    ```python
+    |button 1|
+    |button 2|
+                |button 3|
+    ```
+22. Let's get a little more complicated
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    button1 = tk.Button(root,text="Button1")
+    button1.grid(row=0,column=0,columnspan=3)
+    button2 = tk.Button(root, text="Button 2")
+    button2.grid(row=1, column=1,)
+    button3 = tk.Button(root, text="Button 3")
+    button3.grid(row=2, column=2)
+    tk.mainloop()
+    ```
+    - a:
+    ```python
+    |           button 1        |
+            |button 2|
+                        |button 3|
+    ```
+    - b:
+    ```python
+           | button 1 |
+    | button 2 |
+                | button 3 |
+    ```
+    - c:
+    ```python
+                |button 1|
+                |button 2|
+                            |button 3|
+    ```
+    What happened here? Columnspan changes how many columns a widget occupies, but not how much space it occupies on the screen. That's why button 1 wasn't super long. Then why not option 3? Columns take up the minimal possible width in grid. Button 1 isn't forcing column 0 to take up width, so the column completely collapses. To achieve the desired result of a, we must use the below code.
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    button1 = tk.Button(root,text="Button1")
+    button1.grid(row=0,column=0,columnspan=3,sticky='EW')
+    button2 = tk.Button(root, text="Button 2")
+    button2.grid(row=1, column=1, sticky='EW')
+    button3 = tk.Button(root, text="Button 3")
+    button3.grid(row=2, column=2, sticky='EW')
+    root.columnconfigure(0, minsize=100)
+    root.columnconfigure(1, minsize=100)
+    root.columnconfigure(2, minsize=100)
+    tk.mainloop()
+    ```
+    Sticky uses the compass points to decide where to position a widget in the grid. Opposite directions like 'EW' means stretch to fill. columnconfigure is called on the parent widget. The first parameter is the column number. Note that in order for this scheme to work, minsize must be sufficiently large (ie. larger than the width of any single columnspanning widget). Otherwise, the columns will all be different sizes distorting the desired result.
 
 
-        
+23. What happens if you use grid and pack in the same frame?
 
+    - a: 
+    ```python
+    # You can achieve an aesthetically superior result as opposed to using just grid or just pack.
+    ```
+    - b:
+    ```python
+    # Best Case: an error will be thrown.
+    ```
+24. 
+    Moving on to place.
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    button1 = tk.Button(root,text="Button1")
+    button1.place(relx=0.5, rely=0.5, anchor="center")
+    tk.mainloop()
+    ```
 
+    What will happen?
 
+    - a:
+    ```python
+    # the button will be  in the center and remain in the center on window resize.
+    ```
+    - b:
+    ```python
+    # the button will start in the center but will not adjust on resize
+    ```
 
+    NOTE: can use x and y for absolute positioning with pixels!
+25. Is this legal and if so what does it look like?
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    button1 = tk.Button(root,text="Button1")
+    button1.place(relx=1, rely=0.5, anchor="e")
+    button2 = tk.Button(root,text="Button2")
+    button2.pack(side=tk.LEFT)
+    tk.mainloop()
+    ```
+
+    - a:
+    ```python
+    |Button2|      |Button1|
+    ```
+    - b:
+    ```python
+    # an error is thrown because you cannot mix layout managers
+    ```
+26. What widget is generally used for organizing other widgets? Note: you can use a different layout manager in this widget than you are using in your root.
+
+    - a:
+    ```python
+    # window
+    ```
+    - b:
+    ```python
+    # frame
+    ```
+    - c:
+    ```python
+    # view
+    ```
+27. How do you set the action for a button? (can pick multiple answers)
+
+    - a:
+    ```python
+    button1 = tk.Button(root,text="Button1",command=lambda:print("button clicked"))
+    ```
+    - b:
+    ```python
+    button1 = tk.Button(root, text="Button1")
+    button1.setCommand(lambda:print("button clicked"))
+    ```
+    - c:
+    ```python
+    button1 = tk.Button(root, text="Button1")
+    button1.configure(command=lambda:print("button clicked"))
+    ```
+28. What does the following code do?
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    mystr = tk.StringVar()
+    mystr.set("This is a label")
+    label = tk.Label(root,textvariable=mystr)
+    label.pack()
+    button = tk.Button(root,text="button",command=lambda:mystr.set("Clicked Button"))
+    button.pack()
+    tk.mainloop()
+    ```
+
+    - a:
+    ```python
+    # changes the label text on the first button click
+    ```
+
+    - b:
+    ```python
+    # changes the label text every time the button is clicked
+    ```
+
+    - c:
+    ```python
+    # throws an error
+    ```
+Be aware that there are also IntVar, DoubleVar, and BooleanVar
+
+29. What will the below do?
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    textbox = tk.Text(root, height=1, width=20)
+    textbox.pack()
+    button = tk.Button(root, text="click me",command=lambda:print(textbox.get(1.0,"end-1c")))
+    button.pack()
+    tk.mainloop()
+    ```
+    - a:
+    ```python
+    # on button press, it will print out whatever text is in the text box
+    ```
+    - b:
+    ```python
+    # on button press, it will print out whatever text is in the text box minus the last character
+    ```
+    - c:
+    ```python
+    # the code throws an error
+    ```
+31. Which button in the below causes an error-if any?
+    ```python
+    import tkinter as tk
+    root = tk.Tk()
+    mystr = tk.StringVar()
+    entry  = tk.Entry(root,textvariable=mystr)
+    entry.pack()
+    button = tk.Button(root, text="click me",command=lambda:print(mystr.get()))
+    button2 = tk.Button(root, text="a different approach", command=lambda:print(entry.get()))
+    button.pack()
+    button2.pack()
+    tk.mainloop()
+    ```
+
+    - a:
+    ```python
+    # button 1 causes the error
+    ```
+    - b:
+    ```python
+    # button 2 causes the error
+    ```
+    ```python
+    # there are no errors
+    ````
+Bonus question: are you required to set textvariable?

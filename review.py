@@ -18,7 +18,7 @@
 # print(mydict)
 
 # #4
-# mydict = {"key", "value"}
+# mydict = {"key": "value"}
 # # mydict["key"] = "value2"
 # # mydict.set("key", "value3")
 # # mydict.setdefault("key", "value3")
@@ -159,3 +159,111 @@
 # button3.pack(side=tk.RIGHT)
 # tk.mainloop()
 
+# #21
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root, text="Button 1")
+# button1.grid(row=0, column=0)
+# button2 = tk.Button(root, text="Button 2")
+# button2.grid(row=1, column=1)
+# button3 = tk.Button(root, text="Button 3")
+# button3.grid(row=2, column=2)
+# tk.mainloop()
+
+# # 22
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.grid(row=0,column=0,columnspan=3)
+# button2 = tk.Button(root, text="Button 2")
+# button2.grid(row=1, column=1,)
+# button3 = tk.Button(root, text="Button 3")
+# button3.grid(row=2, column=2)
+# tk.mainloop()
+
+# #22 corrected
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.grid(row=0,column=0,columnspan=3,sticky='EW')
+# button2 = tk.Button(root, text="Button 2")
+# button2.grid(row=1, column=1, sticky='EW')
+# button3 = tk.Button(root, text="Button 3")
+# button3.grid(row=2, column=2, sticky='EW')
+# root.columnconfigure(0, minsize=100)
+# root.columnconfigure(1, minsize=100)
+# root.columnconfigure(2, minsize=100)
+# tk.mainloop()
+
+
+# # 23
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.pack()
+# button2 = tk.Button(root, text="Button 2")
+# button2.grid(row=0,column=1)
+# tk.mainloop()
+
+# # 24
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.place(relx=0.5, rely=0.5, anchor="center")
+# tk.mainloop()
+
+# #25
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.place(x=50, y=50, anchor="center")
+# tk.mainloop()
+
+# #26
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root,text="Button1")
+# button1.place(relx=1, rely=0.5, anchor="e")
+# button2 = tk.Button(root,text="Button2")
+# button2.pack(side=tk.LEFT)
+# tk.mainloop()
+
+# # 27
+# import tkinter as tk
+# root = tk.Tk()
+# button1 = tk.Button(root, text="Button1")
+# button1.configure(command=lambda:print("button clicked"))
+# button1.pack()
+# tk.mainloop()
+
+# # 28
+# import tkinter as tk
+# root = tk.Tk()
+# mystr = tk.StringVar()
+# mystr.set("This is a label")
+# label = tk.Label(root,textvariable=mystr)
+# label.pack()
+# button = tk.Button(root,text="button",command=lambda:mystr.set("Clicked Button"))
+# button.pack()
+# tk.mainloop()
+
+# # 29
+# import tkinter as tk
+# root = tk.Tk()
+# textbox = tk.Text(root, height=1, width=20)
+# textbox.pack()
+# button = tk.Button(root, text="click me",command=lambda:print(textbox.get(1.0,"end-1c")))
+# button.pack()
+# tk.mainloop()
+
+# # 30 - two different approaches
+# import tkinter as tk
+# root = tk.Tk()
+# mystr = tk.StringVar()
+# entry  = tk.Entry(root,textvariable=mystr)
+# entry.pack()
+# button = tk.Button(root, text="click me",command=lambda:print(mystr.get()))
+# button2 = tk.Button(root, text="a different approach", command=lambda:print(entry.get()))
+# button.pack()
+# button2.pack()
+# tk.mainloop()
