@@ -57,9 +57,9 @@
 # myset.add("value2")
 # print(myset)
 
-# #8
-myset = set()
-print(myset)
+# # #8
+# myset = set()
+# print(myset)
 
 # #9
 # mydict = {"key1":"value1","key2":"value2"}

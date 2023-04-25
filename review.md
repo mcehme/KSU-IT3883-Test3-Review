@@ -122,7 +122,7 @@
 8. What will the following print out?
     ```python
     myset = set()
-    print(set)
+    print(myset)
     ```
 
     - a:
