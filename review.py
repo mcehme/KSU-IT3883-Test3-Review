@@ -10,10 +10,10 @@
 
 # #3
 # mydict = {"key":"value", "other":"stuff"}
-# # mydict.remove("key")
-# # mydict.pop("key")
-# # mydict.popitem()
-# # del mydict["key"]
+# mydict.remove("key")
+# mydict.pop("key")
+# mydict.popitem()
+# del mydict["key"]
 
 # print(mydict)
 
@@ -21,7 +21,7 @@
 # mydict = {"key": "value"}
 # # mydict["key"] = "value2"
 # # mydict.set("key", "value3")
-# # mydict.setdefault("key", "value3")
+# mydict.setdefault("key", "value3")
 # print(mydict)
 
 # #5
@@ -35,9 +35,10 @@
 # # else:
 # #     value = None
 
-# # value = mydict.get(key)
+# value = mydict.get(key)
 
-# # value = mydict.get(key,None)
+# # value = mydict.get(key,0)
+# print(value)
 
 # #6
 # mydict = dict()
@@ -51,14 +52,14 @@
 # # else: 
 # #     mydict["key1"] = 1
 
-# #7
+# # #7
 # myset = {"value1"}
 # myset.add("value2")
 # print(myset)
 
 # #8
-# myset = set()
-# print(set)
+myset = set()
+print(myset)
 
 # #9
 # mydict = {"key1":"value1","key2":"value2"}
