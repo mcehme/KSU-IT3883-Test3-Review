@@ -131,10 +131,6 @@
     ```
     - b:
     ```python
-    {()}
-    ```
-    - c:
-    ```python
     set()
     ```
 9. Which of the following converts a  dictionary to a set such that the key value pairs are now tuples?
